@@ -1,0 +1,14 @@
+---
+coredns_version: "1.7.0"
+coredns_download_url: "https://github.com/coredns/coredns/releases/download/v{{ coredns_version }}/coredns_{{ coredns_version }}_linux_amd64.tgz"
+coredns_install_tmp_base_dir: /tmp
+
+coredns_user: coredns
+coredns_group: coredns
+
+coredns_search_config_path: "{{ playbook_dir }}/files/groups/{{ item }}/coredns"
+coredns_search_config_paths: []
+
+coredns_host_config_file_path: "{{ coredns_host_config_path | default(inventory_hostname) }}/Corefile"
+coredns_config_path: /etc/coredns
+coredns_config_file_path: /etc/coredns/Corefile

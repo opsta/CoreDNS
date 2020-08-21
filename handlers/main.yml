@@ -1,0 +1,5 @@
+---
+- name: Restart CoreDNS
+  systemd:
+    name: coredns
+    state: restarted

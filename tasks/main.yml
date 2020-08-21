@@ -1,0 +1,9 @@
+---
+- include_tasks: coredns_pre.yml
+- include_tasks: coredns_install.yml
+
+- block: # Config CoreDNS
+  - include_tasks: coredns_search_config.yml
+  - include_tasks: coredns_post.yml
+  tags:
+    - coredns-config
