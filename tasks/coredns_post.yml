@@ -19,7 +19,7 @@
     owner: "{{ coredns_user }}"
     group: "{{ coredns_group }}"
     mode: 0644
-  notify: Restart CoreDNS
+  notify: Reload CoreDNS
 
 - name: Ensure CoreDNS started and enabled
   systemd:
@@ -27,3 +27,9 @@
     state: started
     enabled: yes
     daemon_reload: yes
+
+- name: Replace resolv.conf old link
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    mode: 0644
