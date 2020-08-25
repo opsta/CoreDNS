@@ -5,4 +5,14 @@ coredns_install_tmp_base_dir: /tmp
 
 coredns_user: coredns
 coredns_group: coredns
-coredns_main_zone: example.com
+coredns_config_path: /etc/coredns
+coredns_config_file_path: /etc/coredns/Corefile
+
+# DNS forwarder
+coredns_forward_servers: [ "1.1.1.1", "1.0.0.1" ]
+# DNS TLS forwarder
+coredns_forward_tls: false
+#coredns_forward_servers: [ "tls://1.1.1.1", "tls://1.0.0.1" ]
+#coredns_forward_tls_server_name: cloudflare-dns.com
+# Local Zone
+# coredns_main_zone: example.com

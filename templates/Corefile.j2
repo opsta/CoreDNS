@@ -1,3 +1,4 @@
+{% if coredns_main_zone is defined %}
 {{ coredns_main_zone }} {
     etcd {
         path /skydns
@@ -7,7 +8,7 @@
     cache
     loadbalance
 }
-
+{% endif %}
 .:53 {
     errors
     health {
@@ -15,10 +16,16 @@
     }
     ready
     prometheus :9153
-    forward . tls://1.1.1.1 tls://1.0.0.1 {
-    	tls_servername cloudflare-dns.com
-	    health_check 5s
+    {% if coredns_forward_tls %}
+    forward . {% for ip in coredns_forward_servers %}{{ ip }} {% endfor %}{
+    	tls_servername {{ coredns_forward_tls_server_name }}
+        health_check 5s
     }
+    {% else -%}
+    forward . {% for ip in coredns_forward_servers %}{{ ip }} {% endfor %}{
+        health_check 5s
+    }
+    {% endif -%}
     cache 30
     loop
     reload
