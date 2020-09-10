@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: coredns
   author: Opsta
   description: Ansible role to install and config CoreDNS
   company: "Opsta (Thailand) Co.,Ltd."
